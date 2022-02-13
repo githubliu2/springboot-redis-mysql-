@@ -70,16 +70,6 @@ public class RedisClientTest {
         	        }
         	    });
         	 
-//             KeyHolder keyHolder = new GeneratedKeyHolder();
-//             int resRow = jdbcTemplate.update(new PreparedStatementCreator() {
-//                 public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-//                     PreparedStatement ps = connection.prepareStatement(sql);
-//                     ps.setString(1,username);
-//                     ps.setString(2,password);
-//                     return ps;
-//                 }
-//             },keyHolder);
-              //Integer.parseInt(keyHolder.getKey().toString());
              
         	 String querySql = "select uid, username, password from mysql_user";
         	 List<User> users = jdbcTemplate.query(querySql, new RowMapper<User>() {
