@@ -1,0 +1,18 @@
+spring: 
+ # redis
+ redis:
+   host: 192.168.29.128
+   port: 6379
+   timeout: 300
+   maxTotal: 10
+   # password:
+   pool:
+     minIdle: 1
+     maxIdle: 10
+     maxWait: 3
+     maxActive: 8
+ datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.29.129:3306/testdb?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
