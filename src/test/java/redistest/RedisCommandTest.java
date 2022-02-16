@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -51,4 +52,31 @@ public class RedisCommandTest {
   
   
     }
+	
+	@Test
+	public void testHash(){
+		//创建对象
+		HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
+		//存储一条数据
+		opsForHash.put("orderInfo","orderId","11");
+		//获取一条数据
+		String value = opsForHash.get("orderInfo", "orderId");
+		System.out.println(value);
+ 
+		//存储多条数据
+		Map<String,String> map = new HashMap();
+		map.put("createTime","2018-06-21");
+		map.put("orderSn","888888");
+		opsForHash.putAll("orderInfo",map);
+		//获取多条数据
+		List<String> listKey = new ArrayList();
+		listKey.add("createTime");
+		listKey.add("orderSn");
+		List<String> info = opsForHash.multiGet("orderInfo", listKey);
+		for (String s : info) {
+			System.out.println(s);
+ 
+		}
+ 
+	}
 }
